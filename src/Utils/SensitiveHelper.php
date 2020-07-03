@@ -17,12 +17,32 @@ class SensitiveHelper extends \DfaFilter\SensitiveHelper
 {
     protected static $_instance = false;
 
+    /**
+     * 排除字符串
+     * @var array
+     */
+    protected $exceptWords = [];
+
     public static function init()
     {
         if (! self::$_instance instanceof self) {
             self::$_instance = new static();
         }
         return self::$_instance;
+    }
+
+    /**
+     * 设置排除字符串
+     * @param array $words
+     * @return $this
+     */
+    public function setExcept(array $words)
+    {
+        if (! empty($words)) {
+            $this->exceptWords = array_merge($this->exceptWords, $words);
+        }
+
+        return $this;
     }
 
     public function setTree($sensitiveWords = null, bool $isNew = false)
@@ -37,5 +57,14 @@ class SensitiveHelper extends \DfaFilter\SensitiveHelper
             $this->buildWordToTree($word);
         }
         return $this;
+    }
+
+    protected function buildWordToTree($word = '')
+    {
+        if (in_array($word, $this->exceptWords)) {
+            return;
+        }
+
+        parent::buildWordToTree($word);
     }
 }

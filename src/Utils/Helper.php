@@ -210,11 +210,15 @@ class Helper
 
     /**
      * 敏感词类
+     * @param array $exceptWords
      * @return SensitiveHelper
      */
-    public static function sensitive()
+    public static function sensitive(array $exceptWords = [])
     {
         $handler = SensitiveHelper::init();
+
+        // 设置排除字符串
+        $handler->setExcept($exceptWords);
 
         // 防止重复写入
         if (static::$sensitiveReadFile) {
