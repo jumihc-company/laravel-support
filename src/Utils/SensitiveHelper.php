@@ -23,6 +23,12 @@ class SensitiveHelper extends \DfaFilter\SensitiveHelper
      */
     protected $exceptWords = [];
 
+    public function __construct()
+    {
+        // 初始化铭感词树
+        $this->wordTree = new HashMap();
+    }
+
     public static function init()
     {
         if (! self::$_instance instanceof self) {
