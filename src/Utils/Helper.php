@@ -6,7 +6,6 @@
 
 namespace Jmhc\Support\Utils;
 
-use Exception;
 use Illuminate\Container\Container;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
@@ -95,17 +94,6 @@ class Helper
     public static function handleNoticeNum(int $num, int $max = 99, int $min = 0)
     {
         return (string) ($num > $max ? $max . '+' : (($num > $min) ? $num : $min));
-    }
-
-    /**
-     * 获取随机数
-     * @param int $len
-     * @return string
-     * @throws Exception
-     */
-    public static function getRandomStr(int $len = 12)
-    {
-        return bin2hex(random_bytes(floor($len / 2)));
     }
 
     /**
