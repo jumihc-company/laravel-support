@@ -29,7 +29,7 @@ class LogHelper
     {
         return Log::save(
             $name,
-            $e->getMessage() . PHP_EOL . $e->getTraceAsString()
+            static::requestMessage() . PHP_EOL . $e->getMessage() . PHP_EOL . $e->getTraceAsString()
         );
     }
 
@@ -44,5 +44,19 @@ class LogHelper
         return Log::setConfig(array_merge([
             'path' => sprintf(static::$dir, $dir),
         ], $config));
+    }
+
+    /**
+     * 请求信息
+     * @return string
+     */
+    public static function requestMessage()
+    {
+        $request = ContainerHelper::request();
+        return <<<EOL
+ip: {$request->ip()}
+url: {$request->fullUrl()}
+method: {$request->method()}
+EOL;
     }
 }

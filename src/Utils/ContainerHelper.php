@@ -6,6 +6,7 @@
 
 namespace Jmhc\Support\Utils;
 
+use Closure;
 use Illuminate\Container\Container;
 
 /**
@@ -46,6 +47,27 @@ class ContainerHelper
         }
 
         return static::app('config')->get($key, $default);
+    }
+
+    /**
+     * 获取请求实例
+     * @param null $key
+     * @param null $default
+     * @return Container|mixed|object|null
+     */
+    public static function request($key = null, $default = null)
+    {
+        if (is_null($key)) {
+            return static::app('request');
+        }
+
+        if (is_array($key)) {
+            return static::app('request')->only($key);
+        }
+
+        $value = static::app('request')->__get($key);
+
+        return is_null($value) ? ($default instanceof Closure ? $default() : $default) : $value;
     }
 
     /**
