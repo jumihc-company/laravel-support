@@ -96,13 +96,30 @@ class LogHelper
     {
         $request = ContainerHelper::request();
         $data = json_encode($request->all(), JSON_UNESCAPED_UNICODE);
+        $headers = static::getJsonHeaders($request);
         return <<<EOL
 ip : {$request->ip()}
 referer : {$request->server('HTTP_REFERER', '-')}
 user_agent : {$request->server('HTTP_USER_AGENT', '-')}
-url : {$request->fullUrl()}
 method : {$request->method()}
+url : {$request->fullUrl()}
+headers : {$headers}
 data : {$data}
 EOL;
+    }
+
+    /**
+     * 获取 json 格式请求头
+     * @param $request
+     * @return false|string
+     */
+    protected static function getJsonHeaders($request)
+    {
+        $headers = [];
+        foreach ($request->headers as $k => $v) {
+            $headers[$k] = $v[0];
+        }
+
+        return json_encode($headers, JSON_UNESCAPED_UNICODE);
     }
 }
