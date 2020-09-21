@@ -109,6 +109,16 @@ class Helper
     }
 
     /**
+     * 是否一维数组
+     * @param array $arr
+     * @return bool
+     */
+    public static function isOneDimensional(array $arr)
+    {
+        return count($arr) == count($arr, COUNT_RECURSIVE);
+    }
+
+    /**
      * 数组转换成key
      * @param array $arr
      * @param string $flag

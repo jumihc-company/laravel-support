@@ -79,7 +79,7 @@ class LogHelper
      * 通过路径保存文件
      * @param string $dir
      * @param array $config
-     * @return mixed
+     * @return Log
      */
     public static function dir(string $dir, array $config = [])
     {
