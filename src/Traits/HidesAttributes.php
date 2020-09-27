@@ -137,9 +137,11 @@ trait HidesAttributes
         }
 
         $results = [];
-        foreach ($arr as $v) {
+        foreach ($arr as $k => $v) {
             if (is_array($v)) {
-                $results[] = $this->hideAttributeRecursive($v);
+                $results[$k] = $this->hideAttributeRecursive($v);
+            } else {
+                $results[$k] = $v;
             }
         }
         return $results;
