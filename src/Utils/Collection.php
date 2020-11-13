@@ -8,7 +8,7 @@ namespace Jmhc\Support\Utils;
 
 use Illuminate\Support\Collection as BaseCollection;
 use Illuminate\Support\HigherOrderCollectionProxy;
-use Jmhc\Support\Traits\HidesAttributes;
+use Jmhc\Support\Traits\HidesAttributesTrait;
 
 /**
  * 集合
@@ -16,7 +16,7 @@ use Jmhc\Support\Traits\HidesAttributes;
  */
 class Collection extends BaseCollection
 {
-    use HidesAttributes;
+    use HidesAttributesTrait;
 
     public function __get($key)
     {

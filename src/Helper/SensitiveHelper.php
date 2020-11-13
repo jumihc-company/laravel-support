@@ -4,7 +4,7 @@
  * Date: 2020/07/01
  */
 
-namespace Jmhc\Support\Utils;
+namespace Jmhc\Support\Helper;
 
 use DfaFilter\Exceptions\PdsBusinessException;
 use DfaFilter\HashMap;
@@ -15,7 +15,7 @@ use DfaFilter\HashMap;
  */
 class SensitiveHelper extends \DfaFilter\SensitiveHelper
 {
-    protected static $_instance = false;
+    protected static $_instance;
 
     /**
      * 排除字符串
@@ -51,6 +51,9 @@ class SensitiveHelper extends \DfaFilter\SensitiveHelper
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function setTree($sensitiveWords = null, bool $isNew = false)
     {
         if (empty($sensitiveWords)) {

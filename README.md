@@ -2,17 +2,21 @@
 
 - [安装](#%E5%AE%89%E8%A3%85)
 - [使用说明](#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
+	- [辅助类介绍](#%E8%BE%85%E5%8A%A9%E7%B1%BB%E4%BB%8B%E7%BB%8D)
+	    - [DBHelper.php](#dbhelperphp)
+	    - [RedisConnectionHelper.php](#redisconnectionhelperphp)
+	    - [RedisHelper.php](#redishelperphp)
+	    - [SensitiveHelper.php](#sensitivehelperphp)
 	- [trait介绍](#trait%E4%BB%8B%E7%BB%8D)
 	    - [InstanceTrait.php](#instancetraitphp)
 	    - [OverwriteCommandTrait.php](#overwritecommandtraitphp)
-	    - [RedisHandlerTrait.php](#redishandlertraitphp)
 	- [工具类介绍](#%E5%B7%A5%E5%85%B7%E7%B1%BB%E4%BB%8B%E7%BB%8D)
 	    - [BeautifyTime.php](#beautifytimephp)
 	    - [Collection.php](#collectionphp)
-	    - [DbHelper.php](#dbhelperphp)
-	    - [FileSize.php](#filesizephp)
-	    - [Log.php](#logphp)
+	    - [Helper.php](#helperphp)
 	    - [RequestClient.php](#requestclientphp)
+	    - [RequestInfo.php](#requestinfophp)
+	    - [StorageUnitConversion.php](#storageunitconversionphp)
 
 ## 安装
 
@@ -22,6 +26,53 @@ composer require jmhc/laravel-support
 ```
 
 ## 使用说明
+
+### 辅助类介绍
+
+#### DBHelper.php
+
+> `Jmhc\Support\Helper\DBHelper`
+>
+> 数据库辅助类
+
+```php
+// 返回所有表名
+DBHelper::getInstance()->getAllTables();
+
+// 返回 mysql 链接下 users 表字段数据
+DBHelper::getInstance([
+    'name' => 'mysql'
+])->getAllColumns('users');
+```
+
+#### RedisConnectionHelper.php
+
+> `Jmhc\Support\Helper\RedisConnectionHelper`
+>
+> Redis链接辅助类
+
+```php
+// 获取默认 redis 链接
+RedisConnectionHelper::get();
+// 获取默认无前缀 redis 链接
+RedisConnectionHelper::getNoPrefix();
+// 获取 phpredis 驱动的链接
+RedisConnectionHelper::getPhpRedis();
+// 获取无前缀 phpredis 驱动的链接
+RedisConnectionHelper::getPhpRedisNoPrefix();
+```
+
+#### RedisHelper.php
+
+> `Jmhc\Support\Helper\RedisHelper`
+>
+> Redis辅助类
+
+#### SensitiveHelper.php
+
+> `Jmhc\Support\Helper\SensitiveHelper`
+>
+> 敏感词辅助类
 
 ### trait介绍
 
@@ -52,12 +103,6 @@ T::getInstance([
  php artisan test --class="App/User"
  ```
 
-#### RedisHandlerTrait.php
-
-> `Jmhc\Support\Traits\RedisHandlerTrait`
->
-> redis 操作句柄 trait
-
 ### 工具类介绍
 
 #### BeautifyTime.php
@@ -75,43 +120,11 @@ T::getInstance([
 - 修改`__get` 魔术方法
 - 新增`__set` , `__isset` , `__unset` 魔术方法
 
-#### DbHelper.php
+#### Helper.php
 
-> `Jmhc\Support\Utils\DbHelper`
+> `Jmhc\Support\Utils\Helper`
 >
-> 数据库辅助方法
-
-```php
-// 返回所有表名
-DbHelper::getInstance()->getAllTables();
-
-// 返回 mysql 链接下 users 表字段数据
-DbHelper::getInstance([
-    'name' => 'mysql'
-])->getAllColumns('users');
-```
-
-#### FileSize.php
-
-> `Jmhc\Support\Utils\FileSize`
->
-> 转换文件尺寸
-
-```php
-// 返回 2097152 字节
-FileSize::get('2m');
-
-// 返回 2147483648 字节
-FileSize::get('2g');
-```
-
-#### Log.php
-
-> `Jmhc\Support\Utils\Log`
->
-> 文件日志保存
-
-- `debug` 日志受环境变量 `LOG_DEBUG` 控制
+> 辅助方法类
 
 #### RequestClient.php
 
@@ -123,3 +136,15 @@ FileSize::get('2g');
 
 - 设置不验证 `https`
 - 设置 `user-agent` 为谷歌浏览器
+
+#### RequestInfo.php
+
+> `Jmhc\Support\Utils\RequestInfo`
+>
+> 请求信息类
+
+#### StorageUnitConversion.php
+
+> `Jmhc\Support\Utils\StorageUnitConversion`
+>
+> 储存单位转换类

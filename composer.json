@@ -20,14 +20,12 @@
         }
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "ext-json": "*",
         "ext-redis": "*",
-        "illuminate/support": "^7.0",
-        "illuminate/container": "^7.0",
-        "illuminate/database": "^7.0",
-        "illuminate/redis": "^7.0",
-        "guzzlehttp/guzzle": "^6.0|^7.0",
+        "ext-mbstring": "*",
+        "laravel/framework": "^8.0",
+        "guzzlehttp/guzzle": "^7.0",
         "lustre/php-dfa-sensitive": "^1.0"
     }
 }

@@ -4,7 +4,7 @@
  * Date: 2020/07/01
  */
 
-namespace Jmhc\Support\Utils;
+namespace Jmhc\Support\Helper;
 
 use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Builder;
@@ -13,9 +13,9 @@ use Throwable;
 
 /**
  * 数据库辅助
- * @package Jmhc\Support\Utils
+ * @package Jmhc\Support\Helper
  */
-class DbHelper
+class DBHelper
 {
     use InstanceTrait;
 
@@ -39,7 +39,7 @@ class DbHelper
 
     public function __construct(string $name = null)
     {
-        $this->connection = ContainerHelper::app('db')->connection($name ?: 'mysql');
+        $this->connection = app('db')->connection($name ?: 'mysql');
         $this->schemaBuilder = $this->connection->getSchemaBuilder();
         $this->prefix = $this->connection->getTablePrefix();
     }
@@ -96,7 +96,7 @@ class DbHelper
     {
         try {
             // 判断是否存在前缀
-            if (strpos($table, $this->prefix) !== 0) {
+            if ($this->prefix && strpos($table, $this->prefix) !== 0) {
                 $table = $this->prefix . $table;
             }
 
