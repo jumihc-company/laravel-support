@@ -25,7 +25,6 @@
         "ext-redis": "*",
         "ext-mbstring": "*",
         "laravel/framework": "^8.0",
-        "guzzlehttp/guzzle": "^7.0",
-        "lustre/php-dfa-sensitive": "^1.0"
+        "guzzlehttp/guzzle": "^7.0"
     }
 }

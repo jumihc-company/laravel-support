@@ -9,7 +9,6 @@ namespace Jmhc\Support\Utils;
 use Illuminate\Container\Container;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
-use Jmhc\Support\Helper\SensitiveHelper;
 
 /**
  * 辅助
@@ -17,8 +16,6 @@ use Jmhc\Support\Helper\SensitiveHelper;
  */
 class Helper
 {
-    private static $sensitiveReadFile = false;
-
     /**
      * 获取url地址
      * @param $url
@@ -200,37 +197,10 @@ class Helper
     {
         $res = Env::get($test);
 
-        if (!$res) {
+        if (! isset($res)) {
             $res = Env::get($product, $default);
         }
 
         return $res;
-    }
-
-    /**
-     * 敏感词类
-     * @param array $exceptWords
-     * @return SensitiveHelper
-     */
-    public static function sensitive(array $exceptWords = [])
-    {
-        // 敏感词实例
-        $sensitive = SensitiveHelper::init();
-
-        // 设置排除字符串
-        $sensitive->setExcept($exceptWords);
-
-        // 防止重复写入
-        if (static::$sensitiveReadFile) {
-            return $sensitive;
-        }
-
-        // 从文件写入敏感词
-        foreach (glob(__DIR__ . '/../../sensitives/*.txt') as $file) {
-            $sensitive->setTreeByFile($file);
-        }
-        static::$sensitiveReadFile = true;
-
-        return $sensitive;
     }
 }

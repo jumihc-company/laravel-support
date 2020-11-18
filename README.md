@@ -6,7 +6,6 @@
 	    - [DBHelper.php](#dbhelperphp)
 	    - [RedisConnectionHelper.php](#redisconnectionhelperphp)
 	    - [RedisHelper.php](#redishelperphp)
-	    - [SensitiveHelper.php](#sensitivehelperphp)
 	- [trait介绍](#trait%E4%BB%8B%E7%BB%8D)
 	    - [InstanceTrait.php](#instancetraitphp)
 	    - [OverwriteCommandTrait.php](#overwritecommandtraitphp)
@@ -67,12 +66,6 @@ RedisConnectionHelper::getPhpRedisNoPrefix();
 > `Jmhc\Support\Helper\RedisHelper`
 >
 > Redis辅助类
-
-#### SensitiveHelper.php
-
-> `Jmhc\Support\Helper\SensitiveHelper`
->
-> 敏感词辅助类
 
 ### trait介绍
 
