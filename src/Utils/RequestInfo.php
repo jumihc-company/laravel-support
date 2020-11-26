@@ -44,7 +44,7 @@ EOL;
      */
     public static function getParam(Request $request, string $name, $default = null, bool $isset = false)
     {
-        $param = $request->header(ucwords($name, '-'), $default);
+        $param = $request->header(ucwords(str_replace('_', '-', $name), '-'), $default);
         $isset = $isset ? isset($param) : (! empty($param));
         if (! $isset) {
             $param = $request->input($name, $default);
