@@ -100,7 +100,7 @@ T::getInstance([
 
 #### BeautifyTime.php
 
-> `Jmhc\Support\Utils\Collection`
+> `Jmhc\Support\Utils\BeautifyTime`
 >
 > 美化时间格式
 
