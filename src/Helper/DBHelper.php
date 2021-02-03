@@ -54,7 +54,7 @@ class DBHelper
     {
         try {
             // 判断是否存在前缀
-            if (strpos($table, $this->prefix) !== 0) {
+            if ($this->prefix && strpos($table, $this->prefix) !== 0) {
                 $table = $this->prefix . $table;
             }
 
